@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SF Construction Compliance - Are You Compliant?</title>
+    <style>
+        /* ======================
+           COMPILED FROM SCSS
+           ======================
+           To modify styles, update the SCSS variables below and recompile:
+           
+           TYPOGRAPHY VARIABLES:
+           - H1 Desktop: 4rem, Tablet: 2.8rem, Mobile: 2.2rem
+           - H2 Desktop: 3rem, Tablet: 2.3rem, Mobile: 2rem
+           - Button Padding: 20px 45px, Mobile: 18px 35px
+           - Button Font Size: 1.2rem, Mobile: 1.1rem
+           
+           COLOR VARIABLES:
+           - Primary Blue: #0066cc
+           - Primary Green: #28a745
+           - Text Primary: #1a1a1a
+           ====================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.95) 0%, rgba(0, 68, 153, 0.95) 100%), 
+                        url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: white;
+            margin-bottom: 25px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 50px;
+            opacity: 0.95;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        /* BUTTON STYLES */
+        .cta-button {
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 20px 45px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #218838, #1e7e34);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(40, 167, 69, 0.5);
+        }
+
+        .submit-button {
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0066cc, #004499);
+            color: white;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            width: 100%;
+        }
+
+        .submit-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .submit-button:hover::before {
+            left: 100%;
+        }
+
+        .submit-button:hover {
+            background: linear-gradient(135deg, #0052a3, #003d7a);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.3);
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #0066cc, #28a745);
+            border-radius: 2px;
+        }
+
+        .section-alt {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+        }
+
+        .section-alt::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 102, 204, 0.1), transparent);
+        }
+
+        /* QUIZ SECTION */
+        .quiz-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(135deg, #0066cc, #28a745, #20c997);
+        }
+
+        .question {
+            margin-bottom: 40px;
+            padding: 35px;
+            background: linear-gradient(135deg, #f8f9fa, #fff);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 102, 204, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .question:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,102,204,0.1);
+        }
+
+        .question h3 {
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .question label {
+            display: block;
+            margin-bottom: 12px;
+            cursor: pointer;
+            padding: 15px 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: white;
+            border: 2px solid transparent;
+            font-weight: 500;
+        }
+
+        .question label:hover {
+            background: #e3f2fd;
+            border-color: #0066cc;
+            transform: translateX(5px);
+        }
+
+        .question input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.3);
+            accent-color: #0066cc;
+        }
+
+        .quiz-result {
+            display: none;
+            padding: 40px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 15px 40px rgba(40, 167, 69, 0.3);
+        }
+
+        .quiz-result h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .quiz-result ul {
+            text-align: left;
+            margin: 20px 0;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quiz-result li {
+            margin-bottom: 8px;
+            padding-left: 10px;
+        }
+
+        /* INFO SECTION */
+        .info-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 102, 204, 0.1);
+            position: relative;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #0066cc, #28a745);
+        }
+
+        .info-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0,102,204,0.15);
+        }
+
+        .info-card-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .info-card-content {
+            padding: 35px;
+        }
+
+        .info-card h3 {
+            color: #0066cc;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-card h3::before {
+            content: attr(data-icon);
+            font-size: 1.8rem;
+            margin-right: 15px;
+        }
+
+        .info-card p {
+            line-height: 1.7;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        /* DOWNLOAD SECTION */
+        .download-section {
+            background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') center/cover;
+            opacity: 0.15;
+        }
+
+        .download-section h2 {
+            color: white;
+        }
+
+        .download-section h2::after {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+
+        .download-form {
+            max-width: 650px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 2;
+        }
+
+        .download-form p {
+            color: #555;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 1.05rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 18px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* CONTACT SECTION */
+        .contact {
+            background: #f8f9fa;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: #666;
+        }
+
+        /* UTILITY STYLES */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.15rem;
+            }
+
+            .cta-button {
+                padding: 18px 35px;
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .section h2 {
+                font-size: 2.3rem;
+            }
+
+            .quiz-container,
+            .download-form {
+                padding: 40px 30px;
+            }
+
+            .question {
+                padding: 25px 20px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            .info-card-image {
+                height: 180px;
+            }
+
+            .info-card-content {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 80px 0;
+                min-height: 60vh;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.05rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .quiz-container,
+            .download-form {
+                padding: 30px 20px;
+            }
+
+            .question {
+                padding: 20px 15px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .info-card-image {
+                height: 160px;
+            }
+
+            .info-card-content {
+                padding: 20px;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Are You Construction Compliant in San Francisco?</h1>
+            <p>Quickly assess your compliance requirements and generate the documents you need to build safely and legally in SF.</p>
+            <a href="#quiz" class="cta-button">Take the Compliance Test</a>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="section">
+        <div class="container">
+            <h2>Take the Test</h2>
+            <div class="quiz-container">
+                <form id="complianceQuiz">
+                    <div class="question">
+                        <h3>1. What type of construction project are you planning?</h3>
+                        <label><input type="radio" name="q1" value="residential"> Residential (single/multi-family home)</label>
+                        <label><input type="radio" name="q1" value="commercial"> Commercial building</label>
+                        <label><input type="radio" name="q1" value="renovation"> Major renovation/addition</label>
+                        <label><input type="radio" name="q1" value="small"> Small repair/maintenance</label>
+                    </div>
+
+                    <div class="question">
+                        <h3>2. What is the estimated project value?</h3>
+                        <label><input type="radio" name="q2" value="under25k"> Under $25,000</label>
+                        <label><input type="radio" name="q2" value="25k-100k"> $25,000 - $100,000</label>
+                        <label><input type="radio" name="q2" value="100k-500k"> $100,000 - $500,000</label>
+                        <label><input type="radio" name="q2" value="over500k"> Over $500,000</label>
+                    </div>
+
+                    <div class="question">
+                        <h3>3. Does your project involve structural changes?</h3>
+                        <label><input type="radio" name="q3" value="yes"> Yes, structural modifications</label>
+                        <label><input type="radio" name="q3" value="no"> No structural changes</label>
+                        <label><input type="radio" name="q3" value="unsure"> I'm not sure</label>
+                    </div>
+
+                    <div class="question">
+                        <h3>4. Will you be working with electrical or plumbing systems?</h3>
+                        <label><input type="radio" name="q4" value="both"> Both electrical and plumbing</label>
+                        <label><input type="radio" name="q4" value="electrical"> Electrical only</label>
+                        <label><input type="radio" name="q4" value="plumbing"> Plumbing only</label>
+                        <label><input type="radio" name="q4" value="neither"> Neither</label>
+                    </div>
+
+                    <div class="question">
+                        <h3>5. Is your property in a historic district or landmark area?</h3>
+                        <label><input type="radio" name="q5" value="yes"> Yes</label>
+                        <label><input type="radio" name="q5" value="no"> No</label>
+                        <label><input type="radio" name="q5" value="unsure"> I don't know</label>
+                    </div>
+
+                    <button type="submit" class="cta-button" style="margin-top: 20px;">Get My Compliance Results</button>
+                </form>
+
+                <div id="quizResult" class="quiz-result">
+                    <h3>Your Compliance Assessment Results</h3>
+                    <p id="resultText"></p>
+                    <div id="requirementsList"></div>
+                    <a href="#download" class="cta-button" style="margin-top: 20px; background: white; color: #28a745;">Download Full Compliance Checklist</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Information Section -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2>Why Compliance Matters in San Francisco</h2>
+            <div class="info-content">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-image" style="background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="info-card-content">
+                            <h3 data-icon="🏛️">Legal Requirements</h3>
+                            <p>San Francisco has strict building codes and permit requirements. All construction projects must comply with city regulations to ensure safety and proper development standards.</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-image" style="background-image: url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="info-card-content">
+                            <h3 data-icon="💰">Avoid Costly Delays</h3>
+                            <p>Non-compliant projects can face stop-work orders, fines up to $10,000+, and lengthy delays that cost more than proper permitting from the start.</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-image" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="info-card-content">
+                            <h3 data-icon="🛡️">Protect Your Investment</h3>
+                            <p>Proper compliance ensures your project adds value to your property and protects you from liability issues, insurance problems, and resale complications.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="section download-section">
+        <div class="container">
+            <h2>Download the Free Compliance Checklist</h2>
+            <div class="download-form">
+                <p style="text-align: center; margin-bottom: 30px; color: #666;">Get your personalized SF construction compliance checklist delivered to your inbox.</p>
+                <form id="downloadForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectType">Project Type (Optional)</label>
+                        <input type="text" id="projectType" name="projectType" placeholder="e.g., Kitchen renovation, New deck, etc.">
+                    </div>
+                    <button type="submit" class="submit-button">Download Free Checklist</button>
+                    <div class="success-message" id="downloadSuccess">
+                        Thank you! Your compliance checklist has been sent to your email.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Still Have Questions?</h2>
+                <p>Our construction compliance experts are here to help you navigate SF's building requirements.</p>
+                
+                <div class="download-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Name</label>
+                            <input type="text" id="contactName" name="contactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">How can we help?</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Tell us about your project and any specific questions you have..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Send Message</button>
+                        <div class="success-message" id="contactSuccess">
+                            Thank you for your message! We'll get back to you within 24 hours.
+                        </div>
+                    </form>
+                    
+                    <div style="text-align: center; margin-top: 30px; padding-top: 30px; border-top: 1px solid #e9ecef;">
+                        <p><strong>Email:</strong> <a href="mailto:help@sfcompliance.com" style="color: #0066cc;">help@sfcompliance.com</a></p>
+                        <p><strong>Phone:</strong> <a href="tel:+14155551234" style="color: #0066cc;">(415) 555-1234</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Quiz functionality
+        document.getElementById('complianceQuiz').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const answers = {
+                q1: formData.get('q1'),
+                q2: formData.get('q2'),
+                q3: formData.get('q3'),
+                q4: formData.get('q4'),
+                q5: formData.get('q5')
+            };
+
+            // Check if all questions are answered
+            if (!answers.q1 || !answers.q2 || !answers.q3 || !answers.q4 || !answers.q5) {
+                alert('Please answer all questions to get your compliance assessment.');
+                return;
+            }
+
+            // Generate results based on answers
+            let requirements = [];
+            let riskLevel = 'low';
+
+            // Determine requirements based on answers
+            if (answers.q1 === 'commercial' || answers.q2 === 'over500k') {
+                requirements.push('Building Permit Required');
+                requirements.push('Professional Architect/Engineer Review');
+                requirements.push('City Planning Review');
+                riskLevel = 'high';
+            }
+
+            if (answers.q2 !== 'under25k') {
+                requirements.push('Building Permit Application');
+                if (riskLevel !== 'high') riskLevel = 'medium';
+            }
+
+            if (answers.q3 === 'yes') {
+                requirements.push('Structural Engineering Review');
+                requirements.push('Building Permit Required');
+                if (riskLevel !== 'high') riskLevel = 'medium';
+            }
+
+            if (answers.q4 === 'both' || answers.q4 === 'electrical') {
+                requirements.push('Electrical Permit');
+                requirements.push('Licensed Electrician Required');
+            }
+
+            if (answers.q4 === 'both' || answers.q4 === 'plumbing') {
+                requirements.push('Plumbing Permit');
+                requirements.push('Licensed Plumber Required');
+            }
+
+            if (answers.q5 === 'yes') {
+                requirements.push('Historic Preservation Review');
+                requirements.push('Special Design Guidelines');
+                riskLevel = 'high';
+            }
+
+            if (requirements.length === 0) {
+                requirements.push('Basic Safety Compliance Check');
+                requirements.push('Verify No Permits Required');
+            }
+
+            // Display results
+            displayQuizResults(requirements, riskLevel);
+        });
+
+        function displayQuizResults(requirements, riskLevel) {
+            const resultDiv = document.getElementById('quizResult');
+            const resultText = document.getElementById('resultText');
+            const requirementsList = document.getElementById('requirementsList');
+
+            let message = '';
+            switch(riskLevel) {
+                case 'high':
+                    message = 'Your project requires comprehensive compliance review and multiple permits.';
+                    break;
+                case 'medium':
+                    message = 'Your project needs several permits and compliance checks.';
+                    break;
+                default:
+                    message = 'Your project has minimal compliance requirements, but verification is still important.';
+            }
+
+            resultText.textContent = message;
+            
+            requirementsList.innerHTML = `
+                <h4 style="margin: 20px 0 10px 0;">Based on your answers, you may need:</h4>
+                <ul>
+                    ${requirements.map(req => `<li>${req}</li>`).join('')}
+                </ul>
+            `;
+
+            resultDiv.style.display = 'block';
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Form submissions
+        document.getElementById('downloadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const button = this.querySelector('button');
+            const successMsg = document.getElementById('downloadSuccess');
+            
+            button.classList.add('loading');
+            button.textContent = 'Sending...';
+            
+            // Simulate form submission
+            setTimeout(() => {
+                button.classList.remove('loading');
+                button.textContent = 'Download Free Checklist';
+                successMsg.style.display = 'block';
+                this.reset();
+                
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 5000);
+            }, 1500);
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const button = this.querySelector('button');
+            const successMsg = document.getElementById('contactSuccess');
+            
+            button.classList.add('loading');
+            button.textContent = 'Sending...';
+            
+            // Simulate form submission
+            setTimeout(() => {
+                button.classList.remove('loading');
+                button.textContent = 'Send Message';
+                successMsg.style.display = 'block';
+                this.reset();
+                
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 5000);
+            }, 1500);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
